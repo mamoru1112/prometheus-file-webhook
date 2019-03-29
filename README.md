@@ -1,17 +1,15 @@
 # A Simple HTTP Server to act as  http webhook for prometheus
 
-A nodejs server running on port 8080 wwhich writes body received in HTTP to local ./logs directory
+A nodejs server running on port 8080 wwhich writes body received in HTTP to console.log.
 
-This was used to write alerts on file for later use.
+This was used to write alerts on console.log for later use.
 
 ## Build and run in openshift
 
 ```
 oc project monitoring
-oc new-build  openshift/nodejs~https://github.com/akram/prometheus-file-webhook.git --name=file-webhook
+oc new-build  openshift/nodejs~https://github.com/mamoru1112/prometheus-file-webhook.git --name=file-webhook
 oc new-app file-webhook
-oc volume --add dc/file-webhook -t pvc --name=alerts --type=persistentVolumeClaim \
-          --claim-name=alerts --claim-size='1Gi' --mount-path=/opt/app-root/src/logs
 ```
 
 ## Configure alertmanager 
