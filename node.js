@@ -1,11 +1,8 @@
 var http = require('http');
-//var fs = require('fs');
 var port = 8080;
 var ip = '0.0.0.0';
 
 http.createServer(function (req, res) {
-
-    console.log('Request Received');
 
     var body = '';
 
@@ -19,7 +16,6 @@ http.createServer(function (req, res) {
     });
 
     req.on('end', function() {
-        //fs.appendFile('logs/alerts.log', body + '\n', 'utf8');
         console.log(body + '\n');
         res.end('{"msg": "OK"}');
     })
